@@ -1,0 +1,75 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+
+   <div class="container">
+
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4 welcome_" src="../static/img/undraw_welcome_cats_thqn.svg" alt="" >
+        <h1 class="display-5 fw-bold">😍🔥 اهلا هنا تجد كل اشتراكاتك </h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">يمكنك تعديل ايبيك من هذي الصفحه وايضا معرفه وقت انتهاء اشتراك لبرنامج والمزيد من الخيارات يمكنك البحر فيها </p>
+          <p class="mb-4" style="color:red;">اذا دفعت ولم تحصل على برنامج الرجاء ضغط على الزر تحديث</p>
+          <p class="mb-4" style="color:red;">الرجاء الانتظار ١٥ دقيقه على الاقل مهم جدا</p>
+
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a type="button" class="btn btn-outline-secondary btn-lg px-4" href="{{ url_for('check_pay') }}">تحديث الدفع </a>
+             
+            <a type="button" class="btn btn-primary btn-lg px-4 gap-3 ml-4" href="{{ url_for('home') }}">العودة لصفحه رئيسية</a>
+
+        </div>
+        </div>
+      </div>
+      <h2>Appilctions</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>APP NAME </th>
+              <th>IP</th>
+              <th>MONTHLY</th>
+              <th>EDIT</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <form method="POST" action="" enctype="multipart/form-data">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+              {% for i in my_list %}
+            
+              <tr>
+              <td>{{ i.app_name }}</td>
+              <td>{{ i.ip_allowed }}</td>
+              <td>
+
+                {% if i.is_monthly == True %}
+
+                {{ i.regster_time }}
+
+                {% else %}
+                FOR EVER :D
+
+                {% endif %}
+            </td>
+     
+
+              <td>  <button name="varaible" type="submit" value="{{ i.app_name }}" ><img src="../static/ICON/user-x.svg" width="15px"> </button>
+              </td>
+
+            </tr>
+       
+      
+            {% endfor %}
+          </form>
+          </tbody>
+        </table>
+      </div>
+      
+   
+
+</div>
+   
+   
+{% endblock %}

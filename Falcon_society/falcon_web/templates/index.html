@@ -1,0 +1,111 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+
+   <div class="mid">
+    <!-- 
+
+
+          <img class ="embed-responsive" src="{{url_for('static', filename='12.gif')}}" >
+
+    -->
+
+    <img class ="embed-responsive" src="{{url_for('static', filename='img/12.gif')}}" >
+
+          <div class="hero text-center">
+
+              <h2 class="text-light display-4 font-weight-bold">FALCON DIGITAL</h2>
+              <a class="text-dark first" href="https://discord.gg/bbYtFTADHx">JOIN DISCORD</a>
+
+            </div>
+
+   </div>
+   <div class="container px-4 py-5">
+
+          
+   <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light"> منصة فالكون الرقمية</h1>
+            <p class="lead text-muted">نظم عملك ك متجر لتنظيم اليه التفعيل لزباينك وايضا تحديث سورساتك اونلاين وبشكل محمي</p>
+    
+        </div>
+      </div>
+    </section>
+
+  
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5 text-center  d-flex justify-content-center">
+
+        <div class="col d-flex align-items-start">
+
+          <div>
+
+            <h4 class="fw-bold mb-0">👍🏻 وسع تجارتك</h4>
+            <p>هدفنا نوصل اكثر من الف زائر لمنصتنا وتقدر توسع فيها رزقك </p>
+          </div>
+
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">🥳 صفحة خاصه لك</h4>
+            <p>صفحه خاصة لك ك مبرمج او مستخدم لعرض خدماتك الي تبيها</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">🦾 جميع المنصات </h4>
+            <p>توجد الادوات والخدمات في جميع مواقع التواصل الاجتماعي</p>
+          </div>
+        </div>
+  
+  
+      </div>
+    <div class="row">
+                        {% for i in database_names %}
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card  box-shadow">
+                              <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">{{ i.app_name }}</h4>
+                                  </div>
+                                         
+
+                              <img class="card-img-top img_50" src="../static/img/{{ i.image_file }}" alt="Card image cap">
+
+                              <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">${{ i.price_app }} <small class="text-muted"></small></h1>
+                                    <ul class="list-unstyled mt-3 ">
+                                          <h6 class="card-subtitle mb-2 text-muted">About Appilction</h6>
+
+                                      <li>{{ i.app_desribe }}</li>
+
+                                    </ul>       
+                                  
+
+                                          <a href="{{ url_for('app_show', app_get=i.app_name) }}" class="btn btn-info">Setting</a>
+
+                                          <a href="{{ url_for('personal', username=i.owner_username) }}" class="btn btn-secondary">contact</a>
+                                          <a href="{{ url_for('send_offer', app_name=i.app_name) }}" class="btn btn-light">send offer</a>
+
+                                          <br>
+                                          <br>
+                                          <p class="card-subtitle mb-2 text-muted">Custmers : {{ i.buyers }}</p>
+
+                                </div>
+                                  
+
+                        </div>
+                        </div>
+                        
+      
+                  
+                        {% endfor %}
+     
+            </div>
+
+</div>
+   
+   
+{% endblock %}

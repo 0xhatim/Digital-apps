@@ -1,0 +1,57 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="../static/img/{{ project.image_file }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+        <h1 class="display-5 fw-bold lh-1 mb-3">{{ project.app_name }}</h1>
+        <p class="lead">{{ project.app_desribe}}</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <form method="POST" action="">
+            {{ form.csrf_token }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.label_label.label(class="form-control-label") }}
+                    {% if form.label_label.errors %}
+                        {{ form.label_label(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.label_label.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.label_label(class="form-control form-control-lg") }}
+                    {% endif %}
+           
+  
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary btn-lg px-4 me-md-2") }}
+            </div>
+        
+        </form>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+   
+   
+{% endblock %}

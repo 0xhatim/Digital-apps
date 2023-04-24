@@ -1,0 +1,104 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+
+   <div class="container ">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+      <div class="p-5 mb-4 bg-light rounded-3 text-md-left">
+        <img src="../static/img/{{user_info.image_file }}" class="rounded float-left" width="200px" alt="..." class="p-3">
+<br>
+        <div class="container-fluid py-5 ">
+            
+           <h1 class="display-5 fw-bold p-4 text-center down">{{ user_info.username }} </h1>
+          <p class="text-md-left">{{ user_info.bio }}</p>
+                {% if current_user.username == user_info.username %}
+                <div class="row text-center">
+
+                        <div class="col-sm-12 col-md-6 col-lg-6 ">
+                            <a class="btn btn-primary btn-lg mb-4" type="button" href="{{ url_for('account')}}">تصفح برامجك</a>
+                        </div>
+                
+                          <div class="col-sm-12 col-md-6 col-lg-6">
+                            <a class="btn text-light bg-dark btn-lg mb-4" type="button" href="{{ url_for('edit_profile')}}">تعديل الملف الشخصي</a>
+                          </div>
+                </div>  
+                {% else %}
+              {% endif %}     
+        </div>
+
+
+      </div>
+      
+      <div class="row">
+        {% for i in apps_all %}
+        <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card  box-shadow">
+              <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ i.app_name }}</h4>
+                  </div>
+                         
+
+              <img class="card-img-top img_50" src="../static/img/{{ i.image_file }}" alt="Card image cap">
+
+              <div class="card-body">
+                    <h1 class="card-title pricing-card-title">${{ i.price_app }} <small class="text-muted">/ life time</small></h1>
+                    <ul class="list-unstyled mt-3 ">
+                          <h6 class="card-subtitle mb-2 text-muted">About Appilction</h6>
+
+                      <li>{{ i.app_desribe }}</li>
+
+                    </ul>       
+
+                          <a href="{{ url_for('app_show', app_get=i.app_name) }}" class="btn btn-info">Setting</a>
+                          {% if i.app_name == "Daylight_checker"  %}
+
+                            <a href="{{ url_for('pay_app', app_name=i.app_name) }}" class="btn btn-dark">BUY ₿</a>
+                          {% endif %}
+
+
+                          {% if i.app_name == "Daylight_Swapper" %}
+                          <a href="{{ url_for('pay_app', app_name=i.app_name) }}" class="btn btn-dark">BUY ₿</a>
+                          {% endif %}
+                                                                  <a href="{{ url_for('send_offer', app_name=i.app_name) }}" class="btn btn-light">send offer</a>
+
+                          <br>
+                          <br>
+                          <p class="card-subtitle mb-2 text-muted">Custmers : {{ i.buyers }}</p>
+
+                </div>
+                  
+
+        </div>
+        </div>
+        
+
+  
+        {% endfor %}
+
+</div>
+
+
+      <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">😍🔥 حاب تتواصل مع المستخدم ؟</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">بالاسفل يوجد طرق التواصل الاكثر استخداما ولا تنسى تستخدم وسيط لضمان حقك</p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a type="button" class="btn btn-outline-secondary btn-lg px-4" href="{{ user_info.instagram_link }}">Instagram</a>
+             
+            <a type="button" class="btn btn-primary btn-lg px-4 gap-3 ml-4" href="{{user_info.discord_link }}">Discord</a>
+
+        </div>
+        </div>
+      </div>
+   
+
+</div>
+   
+   
+{% endblock %}

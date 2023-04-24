@@ -1,0 +1,99 @@
+{% extends "login_layout.html"%}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+
+<section class="login-block">
+
+    <div class="container">
+        <div class="row">
+
+                <div class="col-md-4 login-sec">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                          {{ message }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                        <h2 class="text-center">تسجيل دخولك</h2>
+                        <form method="POST" action="">
+                            {{ form.csrf_token }}
+                            <fieldset class="form-group">
+                                <div class="form-group">
+                                    {{ form.email.label(class="form-control-label") }}
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.password.label(class="form-control-label") }}
+                                    {% if form.password.errors %}
+                                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.password.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.password(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-check">
+                                    {{ form.remember(class="form-check-input") }}
+                                    {{ form.remember.label(class="form-check-label") }}
+                                </div>
+                            </fieldset>
+                            <div class="form-group">
+                                {{ form.submit(class="btn btn-outline-info") }}
+                            </div>
+                            <small class="text-muted ml-2 ">
+                                <p style='font-size:small;'>
+                                <a class="nav-item nav-link" href="{{ url_for('reset_request') }}">Forget Password?</a>
+                                <a class="nav-item nav-link" href="{{ url_for('register') }}"> SIGN UP </a>
+                            </p>
+
+                            </small>
+                        </form>
+
+                </div>
+                <div class="col-md-8 banner-sec">
+                    <div id="carouselExampleIndicator" class="carousel slide" data-ride="carousel">
+
+                       
+                        <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active">
+
+                                    <img class="d-block img-fluid imgs" src="../static/img/12.png" alt="First slide"width="80%" >
+                                    <div class="carousel-caption d-none d-md-block">
+                                            <div class="banner-text">
+            
+                                        </div>
+                                    </div>
+                                </div>
+                            
+
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+
+    </div>
+<br>
+<br>
+
+</section>
+
+{% endblock %}
