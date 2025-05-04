@@ -28,4 +28,3 @@ If you have any questions or issues with the Digital Apps Platform, please don't
 
 Thank you for using the Digital Apps Platform!
 
-Written by Hatim Alotebi at 2020.
